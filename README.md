@@ -246,18 +246,18 @@ Inference completed. Results saved in the 'results' folder.
 
 ## Results
 
-![Tshirt](responses/results/Men_Blue_Floral_Printed_Tropical_Pure_Cotton_T-shirt_topwear.png){: style="width:220px"}![shoes](responses/results/Men_Maroon_Mesh_Running_Non-Marking_Shoes_footwear.png){: style="width:220px"}
+![Tshirt](responses/results/Men_Blue_Floral_Printed_Tropical_Pure_Cotton_T-shirt_topwear.png) ![shoes](responses/results/Men_Maroon_Mesh_Running_Non-Marking_Shoes_footwear.png)
 
 
-![EyeWear](responses/results/Unisex_Grey_Lens__amp__Silver-Toned_Aviator_Sunglasses_with_UV_Protected_Lens_eyewear.png){: style="width:220px"}![Bottomwear](responses/results/Women_Blue_Pure_Cotton_High-Rise_Slash_Knee_Jeans_bottomwear.png){: style="width:220px"}
+![EyeWear](responses/results/Unisex_Grey_Lens__amp__Silver-Toned_Aviator_Sunglasses_with_UV_Protected_Lens_eyewear.png)![Bottomwear](responses/results/Women_Blue_Pure_Cotton_High-Rise_Slash_Knee_Jeans_bottomwear.png)
 
-![Topwear](responses/results/Men_Red_Brand_Logo_Printed_Bomber_Track_Jacket_topwear.png){: style="width:220px"}![Handbag](responses/results/Women_Pink_Structured_Satchel_handbag.png){: style="width:220px"}
+![Topwear](responses/results/Men_Red_Brand_Logo_Printed_Bomber_Track_Jacket_topwear.png)![Handbag](responses/results/Women_Pink_Structured_Satchel_handbag.png)
 
-![Footwear](responses/results/Women_Gold-Toned_Textured_Wedges_footwear.png){: style="width:220px"}![Jacket](responses/results/Men_Olive_Green_liver_Colourblocked_Denim_Jacket_topwear.png){: style="width:220px"}
+![Footwear](responses/results/Women_Gold-Toned_Textured_Wedges_footwear.png)![Jacket](responses/results/Men_Olive_Green_liver_Colourblocked_Denim_Jacket_topwear.png)
 
 
 
-![Jacket](responses/results/Men_White_Classic_Pure_Cotton_Formal_Shirt_handbag.png){: style="width:220px"}![Handbag](responses/results/White_Solid_Structured_Sling_Bag_handbag.png){: style="width:220px"}
+![Jacket](responses/results/Men_White_Classic_Pure_Cotton_Formal_Shirt_handbag.png)![Handbag](responses/results/White_Solid_Structured_Sling_Bag_handbag.png)
 
 
 ## References
