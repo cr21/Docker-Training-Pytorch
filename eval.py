@@ -9,11 +9,11 @@ from model_builder import TinyVGG
 from utils import generate_dataset, load_model_checkpoint
 import os
 from train_helper import valid_step
-
+import time
 
 
 def main():
-    parser = argparse.ArgumentParser(description="MNIST Evaluation Script")
+    parser = argparse.ArgumentParser(description=" Evaluation Script")
 
     parser.add_argument(
         "--seed", type=int, default=1, metavar="S", help="random seed (default: 1)"
@@ -44,30 +44,39 @@ def main():
         "shuffle": True,
     }
     
-    _,_, test_dataset = generate_dataset(base_data_dir_path='data',
+    _,_, test_dataset = generate_dataset(base_data_dir_path='/opt/mount/data',
                                          IMG_SIZE=224)
     test_dataloader = DataLoader(dataset=test_dataset,**kwargs)
     class_names = test_dataset.classes
     print(f"class_names {class_names}")
     # create model and load state dict
     model =  TinyVGG(input_channel=3, hidden_units=10, output_shape=5).to(device)
-    if not os.path.isfile(f'model/model_checkpoint_path.pth'):
+    if not os.path.isfile(f'/opt/mount/model/model_checkpoint_path.pth'):
         print("Model does not exists at location")
     else:
         print("Checkpoint found loading from checkpoint")
-        checkpt = torch.load('model/model_checkpoint_path.pth')
+        checkpt = torch.load('/opt/mount/model/model_checkpoint_path.pth')
         model.load_state_dict(checkpt['model_state_dict'])
     
     # test epoch function call
-    test_loss, test_acc = valid_step(model=model,
-               dataloader = test_dataloader,
-               loss_fn = torch.nn.CrossEntropyLoss(),
-               device = device, 
-               args = args, 
-               epoch = 0)
-    eval_results = {'test_loss':test_loss, 'test_acc':test_acc}
-    with (Path(args.save_dir) / "model" / "eval_results.json").open("w") as f:
-        json.dump(eval_results, f)
+    try:
+        test_loss, test_acc = valid_step(model=model,
+                dataloader = test_dataloader,
+                loss_fn = torch.nn.CrossEntropyLoss(),
+                device = device, 
+                args = args, 
+                epoch = 0)
+        print(test_loss, test_acc)
+        time.sleep(180)
+    except Exception as exp:
+        print(exp)
+    try:
+        eval_results = {'test_loss':test_loss, 'test_acc':test_acc}
+        print(eval_results)
+        with (Path(args.save_dir) / "model" / "eval_results.json").open("w") as f:
+            json.dump(eval_results, f)
+    except Exception as exp:
+        print(exp)
 
 
 if __name__ == "__main__":

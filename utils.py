@@ -29,13 +29,13 @@ def generate_dataset(base_data_dir_path, IMG_SIZE=224):
     ])
 
     ## create dataset
-    train_dataset=datasets.ImageFolder(root=f'./{base_data_dir_path}/train', 
+    train_dataset=datasets.ImageFolder(root=f'{base_data_dir_path}/train', 
                                     transform=manual_transform)
 
-    valid_dataset=datasets.ImageFolder(root=f'./{base_data_dir_path}/val', 
+    valid_dataset=datasets.ImageFolder(root=f'{base_data_dir_path}/val', 
                                     transform=manual_transform)
 
-    test_dataset=datasets.ImageFolder(root=f'./{base_data_dir_path}/test', 
+    test_dataset=datasets.ImageFolder(root=f'{base_data_dir_path}/test', 
                                     transform=manual_transform)
     
     return train_dataset, valid_dataset, test_dataset

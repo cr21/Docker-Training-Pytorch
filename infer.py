@@ -78,7 +78,7 @@ def pred_and_plot_image(
 def infer(model, save_dir , class_names, num_samples=5 ):
     model.eval()
     results_dir = Path(save_dir) / "results"
-    test_image_path_list = list(Path('data/test/').glob("*/*.jpg"))
+    test_image_path_list = list(Path('/opt/mount/data/test/').glob("*/*.jpg"))
     results_dir.mkdir(parents=True, exist_ok=True)
     test_image_path_sample = random.sample(population=test_image_path_list, # go through all of the test image paths
                                                k=num_samples) # randomly select 'k' image paths to pred and plot
@@ -99,17 +99,17 @@ def infer(model, save_dir , class_names, num_samples=5 ):
 
 
 def main():
-    save_dir = "responses"
+    save_dir = "/opt/mount/responses"
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     # init model and load checkpoint here
     
     model = TinyVGG(input_channel=3, hidden_units=10, output_shape=5).to(device)
 
-    if not os.path.isfile(f'model/model_checkpoint_path.pth'):
+    if not os.path.isfile(f'/opt/mount/model/model_checkpoint_path.pth'):
         print("Model does not exists at location")
     else:
         print("Checkpoint found loading from checkpoint")
-        checkpt = torch.load('model/model_checkpoint_path.pth')
+        checkpt = torch.load('/opt/mount/model/model_checkpoint_path.pth')
         model.load_state_dict(checkpt['model_state_dict'])
         print("Model loaded from checkpoints")
     class_names=['bottomwear', 'eyewear', 'footwear', 'handbag', 'topwear']

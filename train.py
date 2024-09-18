@@ -16,7 +16,7 @@ from model_builder import TinyVGG
 from utils import load_model_checkpoint, save_model_checkpoint, generate_dataset
 
 def main():
-    parser = argparse.ArgumentParser(description="MNIST Training Script")
+    parser = argparse.ArgumentParser(description=" Training Script")
     parser.add_argument(
         "--batch-size",
         type=int,
@@ -53,7 +53,7 @@ def main():
     parser.add_argument(
         "--num-processes",
         type=int,
-        default=4,
+        default=5,
         metavar="N",
         help="how many training processes to use (default: 2)",
     )
@@ -80,14 +80,13 @@ def main():
     optimizer = optim.AdamW(model.parameters(), lr=args.lr)
     summary(model, input_size=(3, 224,224))
     if args.resume:
-        if not os.path.isfile('./model/model_checkoint_path.pth'):
+        if not os.path.isfile('/opt/mount/model/model_checkoint_path.pth'):
             print("No checkpoint found to resume from")
         else:
             print("resuming from checkpoint ")
-            load_model_checkpoint(path = './model/model_checkpoint_path.pth',
+            load_model_checkpoint(path = '/opt/mount/model/model_checkpoint_path.pth',
                                 model = model, 
                                 optimizer = optimizer)
-    
 
     model.share_memory()
 
@@ -100,7 +99,7 @@ def main():
 
     # create dataset and dataloader
     
-    train_dataset, valid_dataset, test_dataset=generate_dataset( base_data_dir_path='data',
+    train_dataset, valid_dataset, _ = generate_dataset( base_data_dir_path='/opt/mount/data',
                                                                 IMG_SIZE=224)
                  
     ## create data loader
@@ -108,12 +107,6 @@ def main():
                                 **kwargs)
 
     val_data_loader=DataLoader(dataset=valid_dataset,
-                                batch_size=kwargs['batch_size'],
-                                pin_memory=kwargs['pin_memory'],
-                                num_workers=kwargs["num_workers"],
-                                shuffle=False)
-
-    test_data_loader=DataLoader(dataset=test_dataset,
                                 batch_size=kwargs['batch_size'],
                                 pin_memory=kwargs['pin_memory'],
                                 num_workers=kwargs["num_workers"],
@@ -135,7 +128,7 @@ def main():
     for p in processes:
         p.join()
 
-    save_model_checkpoint(path='./model/model_checkpoint_path.pth',model=model, optimizer=optimizer)
+    save_model_checkpoint(path='/opt/mount/model/model_checkpoint_path.pth',model=model, optimizer=optimizer)
 
 
 

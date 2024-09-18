@@ -63,7 +63,7 @@ def train_step(model: torch.nn.Module,
         train_acc += (y_pred_class==y).sum().item()/len(y_pred)
 
         if batch_id % args.log_interval == 0:
-            print(f"PID {os.getpid()}  Train Loss {train_loss} \n Train acc {train_acc}")
+            print(f"PID {os.getpid()}  Train Loss {train_loss}  Train acc {train_acc}")
             print("+"*50)
     
         
@@ -72,7 +72,7 @@ def train_step(model: torch.nn.Module,
     
     train_loss/=len(dataloader)
     train_acc/=len(dataloader)
-    print(f"epoch {epoch} PID {os.getpid()}  Train Loss {train_loss} \n Train acc {train_acc}")
+    print(f"epoch {epoch} PID {os.getpid()}  Train Loss {train_loss}  Train acc {train_acc}")
     print("+"*50)
     return train_loss, train_acc
 
@@ -88,27 +88,29 @@ def valid_step(model: torch.nn.Module,
                device: torch.device, 
                args:dict, 
                epoch:int) -> Tuple[float, float]:
-    model.eval()
-    test_loss, test_acc = 0.0,  0.0
+    try:
+        model.eval()
+        test_loss, test_acc = 0.0,  0.0
 
-    for batch_id, (X,y) in enumerate(dataloader):
-        X,y  = X.to(device), y.to(device)
+        for batch_id, (X,y) in enumerate(dataloader):
+            X,y  = X.to(device), y.to(device)
 
-        # forward pass
-        y_pred = model(X)
+            # forward pass
+            y_pred = model(X)
 
-        # loss
-        loss = loss_fn(y_pred, y)
-        test_loss+=loss.item()
-        
+            # loss
+            loss = loss_fn(y_pred, y)
+            test_loss+=loss.item()
+            
 
-        y_pred_class = torch.argmax(torch.softmax(y_pred,dim=1), dim=1)
-        test_acc += (y_pred_class==y).sum().item()/len(y_pred)
-        if batch_id % args.log_interval == 0:
-            print(f"PID {os.getpid()}  Validation Loss {test_loss} \n Validation acc {test_acc}")
-            print("+"*50)
-    test_loss/=len(dataloader)
-    test_acc/=len(dataloader)
-    print(f"epoch {epoch} PID {os.getpid()}  Validation Loss {test_loss} \n Validation acc {test_acc}")
-    print("+"*50)
-    return test_loss, test_acc
+            y_pred_class = torch.argmax(torch.softmax(y_pred,dim=1), dim=1)
+            test_acc += (y_pred_class==y).sum().item()/len(y_pred)
+            if batch_id % args.log_interval == 0:
+                print(f"PID {os.getpid()}  Validation Loss {test_loss}  Validation acc {test_acc}")
+                print("+"*50)
+        test_loss/=len(dataloader)
+        test_acc/=len(dataloader)
+        print(f"epoch {epoch} PID {os.getpid()}  Validation Loss {test_loss}  Validation acc {test_acc}")
+        return test_loss, test_acc
+    except Exception as exp:
+        print("Exception in validation step ", exp)

@@ -1,0 +1,30 @@
+services:
+    train:
+        build:
+            context: .
+            dockerfile: Dockerfile.train
+        shm_size: "2gb"
+        volumes:
+          - ./model:/opt/mount/model
+          - ./data:/opt/mount/data
+          - docker_vol:/opt/mount
+
+    eval:
+        build:
+            context: .
+            dockerfile: Dockerfile.eval
+        volumes:
+          - ./model:/opt/mount/model
+          - ./data:/opt/mount/data
+          - docker_vol:/opt/mount
+    infer:
+        build:
+            context: .
+            dockerfile: Dockerfile.infer
+        volumes:
+          - docker_vol:/opt/mount
+          - ./model:/opt/mount/model
+          - ./data:/opt/mount/data
+          - ./responses:/opt/mount/responses
+volumes:
+  docker_vol:
