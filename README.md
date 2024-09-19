@@ -1,16 +1,16 @@
 # Docker-Training-Pytorch
 
 ## Table Of Contents
-  1. [why docker](#why-docker)
-  2. [key terms in docker](#key-terms-in-docker)
-  3. [Docker in MLops](#docker-in-mlops)
-  4. [multi container](#multi-container-applications-with-docker-compose---pytorchcpu-image-classification)
+  1. [Why Docker?](#why-docker)
+  2. [Key Terms In Docker](#key-terms-in-docker)
+  3. [Docker In MLOps](#docker-in-mlops)
+  4. [Multi-Container Applications with Docker-compose : Pytorch+cpu Image classification](#multi-container-applications-with-docker-compose---pytorchcpu-image-classification)
   5. [Build Container](#build-container)
-        1. [Run Train service](#run-training-service)
-        2. [Run Evalauate service](#run-evaluate-service)
-        3. [Run Infer service](#run-inference-service)
-  7. [Results](#results)
-  8. [References](#references)
+        1. [Run Train Service](#run-training-service)
+        2. [Run Evaluate service](#run-evaluate-service)
+        3. [Run Inference service](#run-inference-service)
+  6. [Results](#results)
+  7. [References](#references)
 
   
 
