@@ -1,6 +1,6 @@
 # Docker-Training-Pytorch
 ## Table Of Contents
-- [a1](##run-training-service)
+- [a1](#run-training-service)
 ## Why Docker?
 - Every Software Engineer or Machine Learning Engineer faced the problem **"It worked in My system, but it's not working in your"**.
 - Docker solve this problem by bundling application and depedencies  into container. 
@@ -192,7 +192,7 @@ ENTRYPOINT ["python3", "infer.py"]
 docker compose build --no-cache 
 ```
 
-## Run Training Service
+# Run Training Service
 - train service look for `checkpoint path` in `volume`, if it founds checkpoint file, then it will `load trained model` and `resume training`; and then save updated model in checkpoint location.
 - exit
 ```sh
