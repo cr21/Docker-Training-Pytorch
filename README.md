@@ -1,6 +1,19 @@
 # Docker-Training-Pytorch
+
 ## Table Of Contents
-- [a1](#run-training-service)
+  1. [why docker](#why-docker)
+  2. [key terms in docker](#key-terms-in-docker)
+  3. [Docker in MLops](#docker-in-mlops)
+  4. [multi container](#multi-container-applications-with-docker-compose---pytorchcpu-image-classification)
+  5. [Build Container](#build-container)
+        1. [Run Train service](#run-training-service)
+        2. [Run Evalauate service](#run-evaluate-service)
+        3. [Run Infer service](#run-inference-service)
+  7. [Results](#results)
+  8. [References](#references)
+
+  
+
 ## Why Docker?
 - Every Software Engineer or Machine Learning Engineer faced the problem **"It worked in My system, but it's not working in your"**.
 - Docker solve this problem by bundling application and depedencies  into container. 
@@ -192,7 +205,7 @@ ENTRYPOINT ["python3", "infer.py"]
 docker compose build --no-cache 
 ```
 
-# Run Training Service
+## Run Training Service
 - train service look for `checkpoint path` in `volume`, if it founds checkpoint file, then it will `load trained model` and `resume training`; and then save updated model in checkpoint location.
 - exit
 ```sh
@@ -206,7 +219,7 @@ docker compose run train
 docker compose run eval
 ```
 
-## Run Infernce Service
+## Run Inference Service
 - load model from `checkpoint location`.
 - run infernce on random 5 images, save the results (images with file name, predicted class and predicted probability)
 - exit
